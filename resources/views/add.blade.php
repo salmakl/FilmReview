@@ -5,13 +5,14 @@
 <div class="col-md-8">
             <!-- display form-->
  <div class="container">
-        <form action="" method="POST">
+        <form action="{{ route ('storeFilms')}}" method="POST">
+          @csrf
             <h2>Ajouter Un Film</h2>
             <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                 <label for="title">Titre</label>
-                <input type="text" class="form-control" placeholder="" id="title">
+                <input type="text" class="form-control" placeholder="" name="title" id="title">
                 </div>
             </div>
         </div>
@@ -31,7 +32,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="image">Image</label>
-          <input type="file" class="form-control" placeholder="" id="image">
+          <input type="file" class="form-control" placeholder=""name="img" id="image">
         </div>
       </div>
     </div> 

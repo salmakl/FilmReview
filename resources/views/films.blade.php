@@ -6,7 +6,30 @@
         <div class="col-md-8">
             <div class="card">
             <!-- display posts -->
-            {{$films[0]->title}}
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach($films as $film)
+    <tr>
+      <th scope="row">{{$film->title}}</th>
+      <td>{{$film->description}}</td>
+      <td><img src="../images/{{$film->img}}" alt=""></td>
+      <td><button class="btn btn-danger">Delete</button>
+      <button class="btn btn-secondary">Edit</button>
+    </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+
+            
          </div>
         </div>
     </div>

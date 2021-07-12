@@ -13,16 +13,27 @@
             <div>
                 <p >{{$single->title}}</p>
                 <p>{{$single->description}}</p>
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+
             </div>
             <div>
         </div>
     </div>
-        <div class="row">
+    <form action="{{route("storeComments")}}" method="post" >
+        {{method_field('post')}}
+        @csrf
+    <div class="row">
         <label for="comment">Commenter</label>
         <textarea name="comment" id="comment" ></textarea>
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+        <input type="hidden" name="movie_id" value="{{$single->id}}">
         <button class="btn btn-primary h-100 ">Ajouter</button>
         </div>
+    </form>
+    @foreach ($comments as $comment)
+    <div class=" border border-1 p-3 my-3 row">
+        <p>{{$comment->comment}}</p>
+    </div>
+    @endforeach
+
 </div>
 @endsection

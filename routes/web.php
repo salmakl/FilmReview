@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(["admin","auth"])->group(function () {
 Route::get('/films', 'FilmsController@index')->name('films');
 Route::get('/add', 'FilmsController@create')->name('add');
+Route::get('/', function () {
+    return redirect(route("films"));
+});
+});
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/gallery', 'FilmsController@afficher')->name('gallery');
 Route::get('/single/{id}', 'FilmsController@show')->name('single');
+Route::post('/films/store', 'FilmsController@store')->name('storeFilms');
+Route::post('/comments/store', 'CommentsController@store')->name('storeComments');

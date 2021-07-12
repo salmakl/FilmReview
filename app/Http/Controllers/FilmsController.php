@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Film;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class FilmsController extends Controller
@@ -16,6 +17,12 @@ class FilmsController extends Controller
     {
         $films = Film::all();
         return view('films',['films'=>$films]);
+    }
+
+    public function afficher()
+    {
+        $films = Film::all();
+        return view('gallery',['films'=>$films]);
     }
 
     /**
@@ -36,7 +43,13 @@ class FilmsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $film=new Film();
+        $film->title=$request->title;
+        $film->description=$request->description;
+        $film->img=$request->img;
+
+        $film->save();
+        return redirect('/films');
     }
 
     /**
@@ -49,7 +62,8 @@ class FilmsController extends Controller
     {
 
         // echo $id;
-        return view('single',['single'=>$id]);
+        $comments= Comment::where('movie_id',$id->id)->get();
+        return view('single')->with('single', $id)->with('comments',$comments);
     }
 
     /**
