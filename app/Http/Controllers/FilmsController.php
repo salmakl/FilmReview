@@ -44,9 +44,16 @@ class FilmsController extends Controller
     public function store(Request $request)
     {
         $film=new Film();
+        $file = $request->img;
+        $ext = $file->getClientOriginalExtension();
+        $filename = time() . "." . $ext;
+        $file->move('images/', $filename);
+        
+
+
         $film->title=$request->title;
         $film->description=$request->description;
-        $film->img=$request->img;
+        $film->img=$filename;
 
         $film->save();
         return redirect('/films');
@@ -75,6 +82,9 @@ class FilmsController extends Controller
     public function edit($id)
     {
         //
+        $film=Film::find($id);
+
+        return view('edit',["film"=>$film]);
     }
 
     /**
@@ -86,7 +96,14 @@ class FilmsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $film=Film::find($id);
+        $film->title=$request->title;
+        $film->description=$request->description;
+
+        $film->update();
+
+        return redirect(route("films"));
     }
 
     /**
@@ -98,5 +115,11 @@ class FilmsController extends Controller
     public function destroy($id)
     {
         //
+        $film = Film::findOrFail($id);
+        $film->delete();
+
+        return redirect()->back();
+
+        // Post::where('id', $id)->delete();
     }
 }

@@ -25,6 +25,9 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/gallery', 'FilmsController@afficher')->name('gallery');
+Route::get('/edit/{id}', 'FilmsController@edit')->name('edit');
+Route::put('/update/{id}', 'FilmsController@update')->name('update');
 Route::get('/single/{id}', 'FilmsController@show')->name('single');
+Route::get('/delete/{id}', 'FilmsController@destroy')->name('delete');
 Route::post('/films/store', 'FilmsController@store')->name('storeFilms');
 Route::post('/comments/store', 'CommentsController@store')->name('storeComments');
