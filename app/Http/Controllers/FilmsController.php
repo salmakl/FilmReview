@@ -69,7 +69,7 @@ class FilmsController extends Controller
     {
 
         // echo $id;
-        $comments= Comment::where('movie_id',$id->id)->get();
+       $comments= Comment::where('movie_id',$id->id)->get();
         return view('single')->with('single', $id)->with('comments',$comments);
     }
 

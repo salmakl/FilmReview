@@ -8,7 +8,7 @@
          <!-- display Film -->
          
             <div>
-            <img src="../images/{{$single->img}}" alt="">
+            <img src="../images/{{$single->img}}" alt="" style="width: 35vh ;height: 50vh">
             </div>
             <div>
                 <p >{{$single->title}}</p>
@@ -21,9 +21,9 @@
     <form action="{{route("storeComments")}}" method="post" >
         {{method_field('post')}}
         @csrf
-    <div class="row">
+    <div class="row form-group">
         <label for="comment">Commenter</label>
-        <textarea name="comment" id="comment" ></textarea>
+        <textarea name="comment" id="comment"class="form-control" ></textarea>
         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
         <input type="hidden" name="movie_id" value="{{$single->id}}">
         <button class="btn btn-primary h-100 ">Ajouter</button>

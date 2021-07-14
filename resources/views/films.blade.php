@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          <button class="btn btn-primary">AJouter nouveau film</button>
+         <a href="{{route ('add')}}"> <button class="btn btn-primary ">AJouter nouveau film</button></a>
             <div class="card">
             <!-- display posts -->
             
